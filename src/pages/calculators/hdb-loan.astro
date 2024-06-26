@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HDBLoanCalculator from '../../components/calculators/HDBLoanCalculator.jsx';
+---
+
+<Layout>
+  <section class="container mx-auto py-12 px-6 lg:px-0">
+    <h1 class="text-5xl font-bold text-primary-700 mb-8 text-center">HDB Loan Eligibility Calculator</h1>
+    <p class="text-xl text-gray-700 mb-12 text-center">Use this calculator to check your eligibility for an HDB loan based on the following criteria.</p>
+    
+    <div class="bg-white p-10 rounded-lg shadow-lg mb-12">
+      <h2 class="text-3xl font-bold text-primary-600 mb-6">Eligibility Criteria</h2>
+      <ul class="list-disc list-inside space-y-4 text-gray-700">
+        <li>At least one applicant must be a Singapore Citizen.</li>
+        <li>The applicant(s) and essential occupier(s) have not previously taken 2 or more housing loans from HDB.</li>
+        <li>Monthly household income must not exceed:
+          <ul class="list-disc list-inside pl-6">
+            <li>$14,000 for families</li>
+            <li>$21,000 for extended families</li>
+            <li>$7,000 for singles buying under the Single Singapore Citizen (SSC) Scheme</li>
+          </ul>
+        </li>
+        <li>Applicants must not own or have an interest in any local or overseas private residential property.</li>
+      </ul>
+    </div>
+
+    <HDBLoanCalculator client:load/>
+  </section>
+</Layout>
