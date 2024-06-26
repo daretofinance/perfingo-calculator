@@ -91,9 +91,9 @@ export const prepareHousingData = (applicants, flatType, loanType, estimatedCost
   };
   
   export const sendHousingRequest = async (data) => {
+    const ENDPOINT = import.meta.env.API_ENDPOINT
     try {
-        console.log(data);
-      const response = await fetch('http://127.0.0.1:8000/project_cpf_and_housing', {
+      const response = await fetch(`${ENDPOINT}'/project_cpf_and_housing'`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -101,12 +101,8 @@ export const prepareHousingData = (applicants, flatType, loanType, estimatedCost
         body: JSON.stringify(data)
       });
   
-    //   if (!response.ok) {
-    //     throw new Error('Network response was not ok');
-    //   }
   
       const result = await response.json();
-      console.log('Result:', result);
       return result;
     } catch (error) {
       console.log('Error:', error);
