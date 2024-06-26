@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { prepareHousingData, sendHousingRequest } from '../../utils/api'; 
 import HousingResultVisualization from "../charts/HousingResult";
+import HousingResultPlaceholder from '../placeholders/HousingResultPlaceholder';
 
 const flatTypes = {
     'BTO 2-room Flexi (NM)': 162000,
@@ -44,77 +45,16 @@ const flatTypes = {
   'BTO 5-room (Standard)': 516000,
 };
 
-const dummyData = {
-    oa_list: {
-      applicant1: [1000, 2000, 3000],
-      applicant2: [1500, 2500, 3500]
-    },
-    sa_list: {
-      applicant1: [500, 1000, 1500],
-      applicant2: [750, 1250, 1750]
-    },
-    ma_list: {
-      applicant1: [300, 600, 900],
-      applicant2: [450, 750, 1050]
-    },
-    cash_overflow_from_cpf: {
-      applicant1: [200, 400, 600],
-      applicant2: [300, 500, 700]
-    },
-    cpf_life_payout: {
-      applicant1: 1200,
-      applicant2: 1300
-    },
-    cpf_excess_dict: {
-      applicant1: 1500,
-      applicant2: 1600
-    },
-    total_payment_for_housing: {
-      applicant1: [5000, 10000, 15000],
-      applicant2: [6000, 11000, 16000]
-    },
-    cpf_payment_for_housing: {
-      applicant1: [2000, 4000, 6000],
-      applicant2: [2500, 4500, 6500]
-    },
-    cash_payment_for_housing: {
-      applicant1: [3000, 6000, 9000],
-      applicant2: [3500, 6500, 9500]
-    },
-    retirement_sum_achieved: {
-      applicant1: 100000,
-      applicant2: 120000
-    },
-    housingObj: {},
-    housing_info: {
-      est_cost_of_flat_at_purchase: 300000,
-      downpayment_details: {
-        initial: 50000,
-        second: 50000
-      },
-      miscellaneous_cost: 10000,
-      min_monthly_payment: 1200,
-      loan_tenure: 25,
-      loan_amount: 200000,
-      additional_cash_outlay_from_loan_shortage: 10000,
-      combined_income_at_flat_completion: 8000,
-      additional_payment_from_oa_excess: {
-        applicant1: 500,
-        applicant2: 600
-      }
-    }
-  };
-  
 
 const MortgageCalculatorWidget = () => {
     const [applicants, setApplicants] = useState([
-      { citizenship: 'citizen', income: '5000', age: '30', cpfOA: '20000', liabilities: '5000' },
-      { citizenship: 'pr', income: '4000', age: '28', cpfOA: '15000', liabilities: '3000' }
+      { citizenship: 'Singaporean', income: '5000', age: '30', cpfOA: '0', liabilities: '0' },
+      { citizenship: 'Singaporean', income: '5000', age: '28', cpfOA: '0', liabilities: '0' }
     ]);
     const [flatType, setFlatType] = useState('BTO 4-room (NM)');
     const [loanType, setLoanType] = useState('HDB');
     const [estimatedCost, setEstimatedCost] = useState(flatTypes['BTO 4-room (NM)']);
-    const [result, setResult] = useState(dummyData);
+    const [result, setResult] = useState(null);
   
     const currencyFormatter = new Intl.NumberFormat('en-SG', {
       style: 'currency',
@@ -303,10 +243,10 @@ const MortgageCalculatorWidget = () => {
             onClick={checkEligibility}
             className="w-full bg-primary-500 text-white py-3 rounded-lg font-semibold hover:bg-primary-600 transition duration-300"
           >
-            Check Eligibility
+            Work the Magic
           </button>
         </div>
-        {result && (
+        {result ? (
           <HousingResultVisualization
             oa_list={result.oa_list}
             sa_list={result.sa_list}
@@ -321,7 +261,8 @@ const MortgageCalculatorWidget = () => {
             housingObj={result.housingObj}
             housing_info={result.housing_info}
           />
-        )}
+        ):  <HousingResultPlaceholder/>
+      }
       </div>
     );
   };

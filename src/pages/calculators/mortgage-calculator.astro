@@ -13,76 +13,165 @@ const pageKeywords = "HDB loan, loan eligibility, Singapore housing, mortgage ca
   keywords={pageKeywords}
   calculatorType="MortgageCalculator"
 >
-  <main class="container mx-auto py-12 px-6 lg:px-0">
-    <h1 class="text-5xl font-bold text-primary-700 mb-8 text-center">HDB Loan Eligibility Calculator</h1>
-    <p class="text-xl text-gray-700 mb-12 text-center">Use this calculator to check your eligibility for an HDB loan and estimate your potential loan amount.</p>
-    
-    <section class="bg-white p-10 rounded-lg shadow-lg mb-12">
-      <h2 class="text-3xl font-bold text-primary-600 mb-6">Eligibility Criteria</h2>
-      <ul class="list-disc list-inside space-y-4 text-gray-700">
-        <li>At least one applicant must be a Singapore Citizen.</li>
-        <li>The applicant(s) and essential occupier(s) have not previously taken 2 or more housing loans from HDB.</li>
-        <li>Monthly household income must not exceed:
-          <ul class="list-disc list-inside pl-6">
-            <li>$14,000 for families</li>
-            <li>$21,000 for extended families</li>
-            <li>$7,000 for singles buying under the Single Singapore Citizen (SSC) Scheme</li>
-          </ul>
-        </li>
-        <li>Applicants must not own or have an interest in any local or overseas private residential property.</li>
-      </ul>
-    </section>
+  <main class="bg-gray-50">
+    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+          <span class="block">HDB Loan Eligibility</span>
+          <span class="block text-indigo-600">Calculator</span>
+        </h1>
+        <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+          Use this calculator to check your eligibility for an HDB loan and estimate your potential loan amount.
+        </p>
+      </div>
 
-    <section class="mb-12">
-      <h2 class="text-3xl font-bold text-primary-600 mb-6">HDB Loan Calculator</h2>
-      <p class="text-gray-700 mb-6">Use our calculator below to estimate your potential HDB loan amount and monthly payments based on your income and other factors.</p>
-      <MortgageCalculatorWidget client:load/>
-    </section>
-
-    <section class="mb-12">
-      <h2 class="text-3xl font-bold text-primary-600 mb-6">Understanding Your HDB Loan Calculation</h2>
-      <p class="text-gray-700 mb-4">Our calculator takes into account several factors to provide you with accurate estimates:</p>
-      <ul class="list-disc list-inside text-gray-700 mb-4">
-        <li>Monthly household income</li>
-        <li>Existing financial commitments</li>
-        <li>HDB loan interest rate (currently 2.6% p.a.)</li>
-        <li>Loan tenure (up to 25 years)</li>
-      </ul>
-      <p class="text-gray-700">Remember, this calculator provides estimates. For precise figures and eligibility confirmation, consult with HDB or a financial advisor.</p>
-    </section>
-
-    <section class="mb-12">
-      <h2 class="text-3xl font-bold text-primary-600 mb-6">Tips for HDB Loan Applicants</h2>
-      <ul class="list-disc list-inside text-gray-700 mb-4">
-        <li>Ensure all your documents are up-to-date and accurate.</li>
-        <li>Consider your long-term financial commitments before applying for the maximum loan amount.</li>
-        <li>Compare HDB loan rates with bank loan options to find the best fit for your situation.</li>
-        <li>Factor in additional costs like stamp duty, legal fees, and renovation expenses.</li>
-      </ul>
-    </section>
-
-    <section class="mb-12">
-      <h2 class="text-3xl font-bold text-primary-600 mb-6">Frequently Asked Questions</h2>
-      <div class="space-y-4">
-        <div>
-          <h3 class="text-xl font-medium text-gray-700 mb-2">What is the maximum loan-to-value (LTV) for HDB loans?</h3>
-          <p class="text-gray-700">The maximum LTV for HDB loans is typically 85% of the purchase price or market value of the flat, whichever is lower.</p>
-        </div>
-        <div>
-          <h3 class="text-xl font-medium text-gray-700 mb-2">Can I use my CPF for the down payment?</h3>
-          <p class="text-gray-700">Yes, you can use your CPF Ordinary Account savings to pay for the down payment, subject to CPF usage rules.</p>
-        </div>
-        <div>
-          <h3 class="text-xl font-medium text-gray-700 mb-2">How does the HDB loan interest rate compare to bank loans?</h3>
-          <p class="text-gray-700">HDB loan interest rates are typically more stable than bank loans, currently at 2.6% p.a. Bank loan rates may be lower initially but are subject to market fluctuations.</p>
+      <div class="mt-10">
+        <div class="bg-white overflow-hidden shadow-xl rounded-lg">
+          <div class="px-4 py-5 sm:p-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Eligibility Criteria</h2>
+            <ul class="space-y-3 text-gray-600">
+              <li class="flex items-start">
+                <svg class="flex-shrink-0 h-6 w-6 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span class="ml-3">At least one applicant must be a Singapore Citizen.</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="flex-shrink-0 h-6 w-6 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span class="ml-3">The applicant(s) and essential occupier(s) have not previously taken 2 or more housing loans from HDB.</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="flex-shrink-0 h-6 w-6 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span class="ml-3">
+                  Monthly household income must not exceed:
+                  <ul class="list-disc list-inside pl-6 mt-2">
+                    <li>$14,000 for families</li>
+                    <li>$21,000 for extended families</li>
+                    <li>$7,000 for singles buying under the Single Singapore Citizen (SSC) Scheme</li>
+                  </ul>
+                </span>
+              </li>
+              <li class="flex items-start">
+                <svg class="flex-shrink-0 h-6 w-6 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span class="ml-3">Applicants must not own or have an interest in any local or overseas private residential property.</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </section>
 
-    <section>
-      <h2 class="text-3xl font-bold text-primary-600 mb-6">Need More Help?</h2>
-      <p class="text-gray-700 mb-4">If you need personalized advice on HDB loans or want to explore other housing finance options, our Perfingo financial advisors are here to help.</p>
-      <a href="https://www.perfingo.com/contact" class="inline-block bg-primary-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-primary-600 transition duration-300">Speak to an Advisor</a>
-    </section>
+      <div class="mt-16">
+        <h2 class="text-3xl font-extrabold text-gray-900 mb-6">HDB Loan Calculator</h2>
+        <p class="mb-6 text-gray-600">Use our calculator below to estimate your potential HDB loan amount and monthly payments based on your income and other factors.</p>
+        <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+          <MortgageCalculatorWidget client:load/>
+        </div>
+      </div>
+
+      <div class="mt-16 grid gap-8 md:grid-cols-2">
+        <div class="bg-white overflow-hidden shadow-xl rounded-lg">
+          <div class="px-4 py-5 sm:p-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Understanding Your HDB Loan Calculation</h2>
+            <p class="text-gray-600 mb-4">Our calculator takes into account several factors to provide you with accurate estimates:</p>
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-center">
+                <svg class="h-5 w-5 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                Monthly household income
+              </li>
+              <li class="flex items-center">
+                <svg class="h-5 w-5 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                Existing financial commitments
+              </li>
+              <li class="flex items-center">
+                <svg class="h-5 w-5 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                HDB loan interest rate (currently 2.6% p.a.)
+              </li>
+              <li class="flex items-center">
+                <svg class="h-5 w-5 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                Loan tenure (up to 25 years)
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-white overflow-hidden shadow-xl rounded-lg">
+          <div class="px-4 py-5 sm:p-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Tips for HDB Loan Applicants</h2>
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-center">
+                <svg class="h-5 w-5 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Ensure all your documents are up-to-date and accurate.
+              </li>
+              <li class="flex items-center">
+                <svg class="h-5 w-5 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Consider your long-term financial commitments before applying for the maximum loan amount.
+              </li>
+              <li class="flex items-center">
+                <svg class="h-5 w-5 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Compare HDB loan rates with bank loan options to find the best fit for your situation.
+              </li>
+              <li class="flex items-center">
+                <svg class="h-5 w-5 text-indigo-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Factor in additional costs like stamp duty, legal fees, and renovation expenses.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16">
+        <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Frequently Asked Questions</h2>
+        <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+          <dl class="divide-y divide-gray-200">
+            <div class="px-4 py-5 sm:px-6">
+              <dt class="text-lg font-medium text-gray-900">What is the maximum loan-to-value (LTV) for HDB loans?</dt>
+              <dd class="mt-2 text-gray-600">The maximum LTV for HDB loans is typically 85% of the purchase price or market value of the flat, whichever is lower.</dd>
+            </div>
+            <div class="px-4 py-5 sm:px-6">
+              <dt class="text-lg font-medium text-gray-900">Can I use my CPF for the down payment?</dt>
+              <dd class="mt-2 text-gray-600">Yes, you can use your CPF Ordinary Account savings to pay for the down payment, subject to CPF usage rules.</dd>
+            </div>
+            <div class="px-4 py-5 sm:px-6">
+              <dt class="text-lg font-medium text-gray-900">How does the HDB loan interest rate compare to bank loans?</dt>
+              <dd class="mt-2 text-gray-600">HDB loan interest rates are typically more stable than bank loans, currently at 2.6% p.a. Bank loan rates may be lower initially but are subject to market fluctuations.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <!-- <div class="mt-16 bg-indigo-700 rounded-lg shadow-xl overflow-hidden">
+        <div class="px-4 py-5 sm:p-6">
+          <h2 class="text-3xl font-extrabold text-white">Need More Help?</h2>
+          <p class="mt-1 max-w-2xl text-sm text-indigo-200">If you need personalized advice on HDB loans or want to explore other housing finance options, our Perfingo financial advisors are here to help.</p>
+          <div class="mt-6">
+            <a href="https://www.perfingo.com/contact" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-indigo-600 bg-white hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              Speak to an Advisor
+            </a>
+          </div>
+        </div>
+      </div> -->
+    </div>
   </main>
 </CalculatorLayout>
