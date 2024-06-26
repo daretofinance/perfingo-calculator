@@ -1,16 +1,121 @@
 ---
-
+title: "Perfingo Financial Calculators"
+layout: "../layouts/Layout.astro"
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<section id="hero" class="hero-section">
+  <div class="container">
+    <h1>Welcome to Perfingo's Financial Calculators</h1>
+    <p>Empowering you with tools to make smart financial decisions.</p>
+    <a href="#calculators" class="cta-button">Explore Calculators</a>
+  </div>
+</section>
+
+<section id="calculators" class="calculators-section">
+  <div class="container">
+    <h2>Our Financial Calculators</h2>
+    <div class="calculator-grid">
+      <div class="calculator-item">
+        <h3>Income Tax Calculator</h3>
+        <p>Calculate your tax payable based on your annual income.</p>
+        <a href="/calculators/income-tax" class="cta-button">Try it Now</a>
+      </div>
+      <div class="calculator-item">
+        <h3>HDB Loan Eligibility Calculator</h3>
+        <p>Find out your eligibility for HDB loans.</p>
+        <a href="/calculators/hdb-loan" class="cta-button">Try it Now</a>
+      </div>
+      <div class="calculator-item">
+        <h3>CPF Contribution Calculator</h3>
+        <p>Calculate your CPF contributions.</p>
+        <a href="/calculators/cpf-contribution" class="cta-button">Try it Now</a>
+      </div>
+      <div class="calculator-item">
+        <h3>Retirement Savings Calculator</h3>
+        <p>Plan for your retirement with our savings calculator.</p>
+        <a href="/calculators/retirement-savings" class="cta-button">Try it Now</a>
+      </div>
+      <div class="calculator-item">
+        <h3>Investment Returns Calculator</h3>
+        <p>Estimate your investment returns over time.</p>
+        <a href="/calculators/investment-returns" class="cta-button">Try it Now</a>
+      </div>
+      <div class="calculator-item">
+        <h3>Mortgage Calculator</h3>
+        <p>Calculate your monthly mortgage payments.</p>
+        <a href="/calculators/mortgage" class="cta-button">Try it Now</a>
+      </div>
+      <div class="calculator-item">
+        <h3>Car Loan Calculator</h3>
+        <p>Estimate your monthly car loan payments.</p>
+        <a href="/calculators/car-loan" class="cta-button">Try it Now</a>
+      </div>
+      <div class="calculator-item">
+        <h3>Education Savings Calculator</h3>
+        <p>Save for your children's education.</p>
+        <a href="/calculators/education-savings" class="cta-button">Try it Now</a>
+      </div>
+      <div class="calculator-item">
+        <h3>Cost of Living Calculator</h3>
+        <p>Compare the cost of living in different cities.</p>
+        <a href="/calculators/cost-of-living" class="cta-button">Try it Now</a>
+      </div>
+      <div class="calculator-item">
+        <h3>Budget Planner</h3>
+        <p>Create your monthly budget easily.</p>
+        <a href="/calculators/budget-planner" class="cta-button">Try it Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about-section">
+  <div class="container">
+    <h2>About Perfingo</h2>
+    <p>At Perfingo, we are dedicated to providing the best financial planning tools to help you achieve your financial goals. Our calculators are designed to be user-friendly and provide accurate results to aid in your financial decision-making.</p>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <div class="container">
+    <h2>Contact Us</h2>
+    <p>If you have any questions or need further assistance, please feel free to reach out to us.</p>
+    <a href="/contact" class="cta-button">Get in Touch</a>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    text-align: center;
+    padding: 50px 0;
+    background: #f9f9f9;
+  }
+
+  .calculators-section {
+    padding: 50px 0;
+  }
+
+  .calculator-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .calculator-item {
+    flex: 1 1 30%;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  .cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+</style>
