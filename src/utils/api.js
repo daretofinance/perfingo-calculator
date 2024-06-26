@@ -91,21 +91,26 @@ export const prepareHousingData = (applicants, flatType, loanType, estimatedCost
   };
   
   export const sendHousingRequest = async (data) => {
-    const ENDPOINT = import.meta.env.API_ENDPOINT
+    const ENDPOINT = import.meta.env.PUBLIC_API_ENDPOINT
     try {
-      const response = await fetch(`${ENDPOINT}'/project_cpf_and_housing'`, {
+      const response = await fetch(`${ENDPOINT}/project_cpf_and_housing`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
       });
-  
+      
+      
+      // console.log(response)
+      if (!response.status !== 200) {
+        console.log('Error:', response);
+        throw new Error('Error:', response);
+      }
   
       const result = await response.json();
       return result;
     } catch (error) {
-      console.log('Error:', error);
       throw error;
     }
   };

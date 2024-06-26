@@ -23,7 +23,17 @@ const HousingResultVisualization = ({
 }) => {
   const [activeTab, setActiveTab] = useState('overview');
   const [isPremiumUser, setIsPremiumUser] = useState(false);
-  const years = cpf_payment_for_housing.applicant1.map((_, index) => `Year ${index + 1}`);
+  const [years, setYears] = useState([]);
+  
+  React.useEffect(() => {
+    let years = [];
+    if (cpf_payment_for_housing){
+      cpf_payment_for_housing.applicant1.forEach((_, index) => {
+        years.push(`Year ${index + 1}`);
+      });
+    }
+    setYears(years);
+  })
 
   const generateLineChartData = (data, label) => {
     const applicant1Data = data.applicant1;
