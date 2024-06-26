@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import HDBLoanCalculator from '../../components/calculators/HDBLoanCalculator.jsx';
+import MortgageCalculatorWidget from "../../components/calculators/MortgageCalculatorWidget"
 ---
 
 <Layout>
@@ -24,6 +24,6 @@ import HDBLoanCalculator from '../../components/calculators/HDBLoanCalculator.js
       </ul>
     </div>
 
-    <HDBLoanCalculator client:load/>
+    <MortgageCalculatorWidget client:load/>
   </section>
 </Layout>

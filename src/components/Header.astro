@@ -1,18 +1,72 @@
-<header class="bg-primary-500 p-4">
-    <div class="container mx-auto flex justify-between items-center">
-      <div class="logo">
-        <a href="/">
-          <img src="/assets/images/logo.png" alt="Perfingo Logo" class="h-12" />
-        </a>
-      </div>
-      <nav class="site-nav">
-        <ul class="flex space-x-6">
-          <li><a href="/" class="text-white hover:text-primary-200">Home</a></li>
-          <li><a href="/#calculators" class="text-white hover:text-primary-200">Calculators</a></li>
-          <li><a href="/about" class="text-white hover:text-primary-200">About</a></li>
-          <li><a href="/contact" class="text-white hover:text-primary-200">Contact</a></li>
+<header class="bg-white shadow-md relative">
+  <div class="container mx-auto px-4 py-3">
+    <div class="flex justify-between items-center">
+      <a href="/" class="flex items-center z-10">
+        <img src="/perfingo-logo.png" alt="Perfingo Logo" class="h-10 mr-3" />
+        <span class="self-center text-xl font-semibold whitespace-nowrap">Calculators</span>
+      </a>
+      
+      <!-- Hamburger menu for mobile -->
+      <button id="menu-toggle" class="md:hidden text-gray-700 hover:text-primary-500 focus:outline-none z-10">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path class="hamburger" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          <path class="cross hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      
+      <!-- Navigation menu -->
+      <nav id="menu" class="hidden md:flex md:items-center absolute md:relative top-full left-0 w-full md:w-auto bg-white md:bg-transparent shadow-md md:shadow-none">
+        <ul class="flex flex-col md:flex-row md:space-x-6 space-y-2 md:space-y-0 text-sm md:text-base p-4 md:p-0">
+          <li><a href="https://www.perfingo.com" class="block text-gray-700 hover:text-primary-500 transition duration-300" target="_blank" rel="noopener noreferrer">Home</a></li>
+          <li><a href="https://www.perfingo.com/about" class="block text-gray-700 hover:text-primary-500 transition duration-300" target="_blank" rel="noopener noreferrer">About</a></li>
+          <li><a href="https://www.perfingo.com/create-account" class="block bg-primary-500 text-white px-4 py-2 rounded-full hover:bg-primary-600 transition duration-300" target="_blank" rel="noopener noreferrer">Sign Up</a></li>
         </ul>
       </nav>
     </div>
-  </header>
-  
+  </div>
+</header>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu');
+  const hamburgerIcon = document.querySelector('.hamburger');
+  const crossIcon = document.querySelector('.cross');
+
+  if (menuToggle && menu && hamburgerIcon && crossIcon) {
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+      hamburgerIcon.classList.toggle('hidden');
+      crossIcon.classList.toggle('hidden');
+      document.body.classList.toggle('overflow-hidden');
+    });
+
+    // Close the menu when a link is clicked (for mobile)
+    const menuLinks = menu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 768) { // md breakpoint
+          menu.classList.add('hidden');
+          hamburgerIcon.classList.remove('hidden');
+          crossIcon.classList.add('hidden');
+          document.body.classList.remove('overflow-hidden');
+        }
+      });
+    });
+
+    // Ensure menu is visible and icon is correct when screen size changes to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) { // md breakpoint
+        menu.classList.remove('hidden');
+        hamburgerIcon.classList.remove('hidden');
+        crossIcon.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      } else {
+        menu.classList.add('hidden');
+        hamburgerIcon.classList.remove('hidden');
+        crossIcon.classList.add('hidden');
+      }
+    });
+  } else {
+    console.error('Menu toggle button, menu, or icons not found');
+  }
+</script>

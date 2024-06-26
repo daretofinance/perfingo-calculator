@@ -106,7 +106,7 @@ const dummyData = {
   };
   
 
-const HDBLoanCalculator = () => {
+const MortgageCalculatorWidget = () => {
     const [applicants, setApplicants] = useState([
       { citizenship: 'citizen', income: '5000', age: '30', cpfOA: '20000', liabilities: '5000' },
       { citizenship: 'pr', income: '4000', age: '28', cpfOA: '15000', liabilities: '3000' }
@@ -326,4 +326,4 @@ const HDBLoanCalculator = () => {
     );
   };
   
-  export default HDBLoanCalculator;
+export default MortgageCalculatorWidget;
