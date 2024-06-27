@@ -24,6 +24,7 @@ const HousingResultVisualization = ({
   const [activeTab, setActiveTab] = useState('overview');
   const [isPremiumUser, setIsPremiumUser] = useState(false);
   const [years, setYears] = useState([]);
+  const [ housingPaymentData, setHousingPaymentData] = useState({});
   
   React.useEffect(() => {
     let years = [];
@@ -33,85 +34,81 @@ const HousingResultVisualization = ({
       });
     }
     setYears(years);
+  
+    let housingPaymentDataset = [
+        {
+          label: 'Applicant 1 CPF',
+          data: cpf_payment_for_housing.applicant1,
+          backgroundColor: 'rgba(75, 192, 192, 0.6)',
+          stack: 'Applicant 1',
+        },
+        {
+          label: 'Applicant 1 Cash',
+          data: cash_payment_for_housing.applicant1,
+          backgroundColor: 'rgba(153, 102, 255, 0.6)',
+          stack: 'Applicant 1',
+        },
+      ]
+
+      if (cash_overflow_from_cpf.applicant2) {
+        housingPaymentDataset.push(
+          {
+            label: 'Applicant 2 CPF',
+            data: cpf_payment_for_housing.applicant2,
+            backgroundColor: 'rgba(75, 192, 192, 0.9)',
+            stack: 'Applicant 2',
+          },
+          {
+            label: 'Applicant 2 Cash',
+            data: cash_payment_for_housing.applicant2,
+            backgroundColor: 'rgba(153, 102, 255, 0.9)',
+            stack: 'Applicant 2',
+          }
+        )
+      }
+
+      setHousingPaymentData({
+        labels: years,
+        datasets: housingPaymentDataset,
+      });
+
+
   }, [])
 
   const generateLineChartData = (data, label) => {
     const applicant1Data = data.applicant1;
-    const applicant2Data = data.applicant2;
+    let applicant2Data = [];
+    let datasets = [];
+    if (data.applicant2) {
+      applicant2Data = data.applicant2;
+      
+    }
     const labels = Array.from({ length: Math.max(applicant1Data.length, applicant2Data.length) }, (_, i) => `Year ${i + 1}`);
-
-    return {
-      labels,
-      datasets: [
-        {
-          label: `Applicant 1 ${label}`,
-          data: applicant1Data,
-          borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        },
+    datasets.push(
+      {
+        label: `Applicant 1 ${label}`,
+        data: applicant1Data,
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      }
+    )
+    if (applicant2Data.length > 0) {
+      datasets.push(
         {
           label: `Applicant 2 ${label}`,
           data: applicant2Data,
           borderColor: 'rgb(53, 162, 235)',
           backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        },
-      ],
-    };
+        }
+      )
+    }
+    return {
+      labels,
+      datasets: datasets,
+    }
   };
 
-  const cpfBalanceData = {
-    labels: ['OA', 'SA', 'MA'],
-    datasets: [
-      {
-        label: 'Applicant 1',
-        data: [
-          oa_list.applicant1[oa_list.applicant1.length - 1],
-          sa_list.applicant1[sa_list.applicant1.length - 1],
-          ma_list.applicant1[ma_list.applicant1.length - 1],
-        ],
-        backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)', 'rgba(255, 206, 86, 0.6)'],
-      },
-      {
-        label: 'Applicant 2',
-        data: [
-          oa_list.applicant2[oa_list.applicant2.length - 1],
-          sa_list.applicant2[sa_list.applicant2.length - 1],
-          ma_list.applicant2[ma_list.applicant2.length - 1],
-        ],
-        backgroundColor: ['rgba(255, 99, 132, 0.9)', 'rgba(54, 162, 235, 0.9)', 'rgba(255, 206, 86, 0.9)'],
-      },
-    ],
-  };
 
-  const housingPaymentData = {
-    labels: years,
-    datasets: [
-      {
-        label: 'Applicant 1 CPF',
-        data: cpf_payment_for_housing.applicant1,
-        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-        stack: 'Applicant 1',
-      },
-      {
-        label: 'Applicant 1 Cash',
-        data: cash_payment_for_housing.applicant1,
-        backgroundColor: 'rgba(153, 102, 255, 0.6)',
-        stack: 'Applicant 1',
-      },
-      {
-        label: 'Applicant 2 CPF',
-        data: cpf_payment_for_housing.applicant2,
-        backgroundColor: 'rgba(75, 192, 192, 0.9)',
-        stack: 'Applicant 2',
-      },
-      {
-        label: 'Applicant 2 Cash',
-        data: cash_payment_for_housing.applicant2,
-        backgroundColor: 'rgba(153, 102, 255, 0.9)',
-        stack: 'Applicant 2',
-      },
-    ],
-  };
 
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -130,15 +127,21 @@ const HousingResultVisualization = ({
   };
 
 
-  const renderInfoItem = (icon, title, value, colorClass) => (
-    <div key={title} className="bg-gray-100 p-4 rounded-lg flex items-center">
-      {React.createElement(icon, { className: `${colorClass} mr-3`, size: 24 })}
-      <div>
-        <p className="font-semibold">{title}</p>
-        <p className={`text-xl font-bold ${colorClass}`}>{value}</p>
+  const renderInfoItem = (icon, title, value, colorClass) => {
+    if (value.includes("NaN")) {
+      return null;
+    }
+    
+    return (
+      <div key={title} className="bg-gray-100 p-4 rounded-lg flex items-center">
+        {React.createElement(icon, { className: `${colorClass} mr-3`, size: 24 })}
+        <div>
+          <p className="font-semibold">{title}</p>
+          <p className={`text-xl font-bold ${colorClass}`}>{value}</p>
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   const renderDownpaymentDetails = () => {
     const downpayment = housing_info?.downpayment_details || {};
