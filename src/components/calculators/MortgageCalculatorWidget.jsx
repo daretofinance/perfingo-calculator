@@ -101,7 +101,6 @@ const MortgageCalculatorWidget = () => {
       const preparedData = prepareHousingData(applicants, flatType, loanType, estimatedCost);
       
       const data = await sendHousingRequest(preparedData);
-      console.log(data);
       setResult(data);
     } catch (error) {
       console.error('Error in checkEligibility:', error);
