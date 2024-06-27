@@ -33,7 +33,7 @@ const HousingResultVisualization = ({
       });
     }
     setYears(years);
-  })
+  }, [])
 
   const generateLineChartData = (data, label) => {
     const applicant1Data = data.applicant1;

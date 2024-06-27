@@ -48,7 +48,6 @@ const flatTypes = {
 const MortgageCalculatorWidget = () => {
   const [applicants, setApplicants] = useState([
     { citizenship: 'Singaporean', income: '5000', age: '30', cpfOA: '0', liabilities: '0' },
-    { citizenship: 'Singaporean', income: '5000', age: '28', cpfOA: '0', liabilities: '0' }
   ]);
   const [flatType, setFlatType] = useState('BTO 4-room (NM)');
   const [loanType, setLoanType] = useState('HDB');
@@ -83,7 +82,7 @@ const MortgageCalculatorWidget = () => {
 
   const addApplicant = () => {
     if (applicants.length < 2) {
-      setApplicants([...applicants, { citizenship: '', income: '', age: '', cpfOA: '', liabilities: '' }]);
+      setApplicants([...applicants, { citizenship: 'Singaporean', income: '5000', age: '28', cpfOA: '0', liabilities: '0' }]);
     }
   };
 
@@ -97,12 +96,25 @@ const MortgageCalculatorWidget = () => {
     setLoading(true);
     setError(null);
     setResult(null);
+    
     try {
       const preparedData = prepareHousingData(applicants, flatType, loanType, estimatedCost);
+      
       const data = await sendHousingRequest(preparedData);
+      console.log(data);
       setResult(data);
     } catch (error) {
-      setError('An error occurred. Please try again.');
+      console.error('Error in checkEligibility:', error);
+      
+      let errorMessage = 'An error occurred. Please try again.';
+      if (error instanceof Error) {
+        errorMessage = `Error: ${error.message}`;
+      }
+      
+      setError(errorMessage);
+      
+      // You might want to send this error to a logging service
+      // logErrorToService(error);
     } finally {
       setLoading(false);
     }
@@ -135,9 +147,9 @@ const MortgageCalculatorWidget = () => {
                 className="w-full mt-2 p-3 border border-gray-300 rounded-lg"
               >
                 <option value="">Select</option>
-                <option value="citizen">Singapore Citizen</option>
-                <option value="pr">Permanent Resident</option>
-                <option value="non-citizen">Non-Citizen</option>
+                <option value="Singaporean">Singapore Citizen</option>
+                <option value="Permanent Resident">Permanent Resident</option>
+                <option value="Others">Non-Citizen</option>
               </select>
             </div>
             <div>

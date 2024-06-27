@@ -89,29 +89,61 @@ export const prepareHousingData = (applicants, flatType, loanType, estimatedCost
       total_liabilities
     };
   };
-  
-  export const sendHousingRequest = async (data) => {
-    const ENDPOINT = import.meta.env.PUBLIC_API_ENDPOINT
-    try {
+
+// export const sendHousingRequest = async (data) => {
+//   const ENDPOINT = import.meta.env.PUBLIC_API_ENDPOINT
+//   try {
+//     const response = await fetch(`${ENDPOINT}/project_cpf_and_housing`, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify(data)
+//     });
+    
+    
+//     // console.log(response)
+//     if (!response.status !== 200) {
+//       console.log('Error:', response);
+//       throw new Error('Error:', response);
+//     }
+
+//     const result = await response.json();
+//     return result;
+//   } catch (error) {
+//     console.log('Error:', error);
+//     throw error;
+//   }
+// };
+export const sendHousingRequest = async (data) => {
+  const ENDPOINT = import.meta.env.PUBLIC_API_ENDPOINT;
+  try {
       const response = await fetch(`${ENDPOINT}/project_cpf_and_housing`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
       });
-      
-      
-      // console.log(response)
-      if (!response.status !== 200) {
-        console.log('Error:', response);
-        throw new Error('Error:', response);
+
+      if (!response.ok) {
+          const errorBody = await response.text();
+          console.error('Error response body:', errorBody);
+          throw new Error(`HTTP error! status: ${response.status}, body: ${errorBody}`);
       }
-  
-      const result = await response.json();
-      return result;
-    } catch (error) {
+
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.indexOf("application/json") !== -1) {
+          const result = await response.json();
+          return result;
+      } else {
+          const textResult = await response.text();
+          console.log('Text result:', textResult);
+          throw new Error('Response was not JSON');
+      }
+  } catch (error) {
+      console.error('Error in sendHousingRequest:', error);
       throw error;
-    }
-  };
+  }
+};
   
