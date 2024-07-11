@@ -1,41 +1,136 @@
 ---
 import { Image } from 'astro:assets';
+
+const cards = [
+  {
+    title: "Forge your own Financial Pathway",
+    image: "/get-started/forger.svg",
+    alt: "Forge",
+    description: "Use Perfingo in your own way. Recommended for users with good personal finance knowledge.",
+    learnMoreLink: "/get-started",
+    actionLink: "/create-account",
+    actionText: "Create Account",
+  },
+  {
+    title: "Get a guided session",
+    image: "/get-started/guide.svg",
+    alt: "Guide",
+    description: "Be guided through the process and receive professional analysis. Recommended for users who are primarily interested in the insights.",
+    learnMoreLink: "/get-started",
+    actionLink: "/guided-session-form",
+    actionText: "Schedule",
+  },
+];
 ---
 
-<section class="py-20 bg-white">
+<section class="py-20 bg-gradient-to-br from-white to-secondary-50">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-center mb-16">Get started with Perfingo</h2>
+    <h2 class="text-4xl font-bold text-center mb-16 text-neutral-800">Get started with Perfingo</h2>
     <div class="flex flex-wrap justify-center gap-8">
-      <div class="w-full md:w-96 bg-gray-50 rounded-lg shadow-lg p-8">
-        <h3 class="text-2xl font-semibold mb-4">Forge your own Financial Pathway</h3>
-        <div class="w-full flex items-center justify-center mb-4">
-          <Image src="/assets/images/get-started/forger.svg" alt="Forge your path" width={200} height={200} />
+      {cards.map((card) => (
+        <div class="w-full md:w-96 bg-white rounded-lg shadow-lg p-8 transition-all duration-300 hover:shadow-xl">
+          <h3 class="text-2xl font-semibold mb-4 text-neutral-800 text-center">{card.title}</h3>
+          <div class="w-full flex items-center justify-center mb-6">
+            <div class="h-48 flex items-center justify-center">
+              <Image src={card.image} alt={card.alt} width={200} height={200} class="h-full object-contain transition-transform duration-300 hover:scale-105"  />
+            </div>
+          </div>
+          <p class="text-neutral-600 mb-6">
+            {card.description}
+          </p>
+          <div class="flex flex-col space-y-4">
+            <a href={card.learnMoreLink} class="w-full text-center text-primary-500 font-semibold hover:underline transition-colors duration-300">Learn more</a>
+            <a href={card.actionLink} target="_blank" class="bg-primary-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-600 transition-all duration-300 text-center transform hover:-translate-y-1">
+              {card.actionText}
+            </a>
+          </div>
         </div>
-        <p class="text-gray-600 mb-6">
-          Use Perfingo in your own way. Recommended for users with good personal finance knowledge.
-        </p>
-        <div class="flex flex-col space-y-4">
-          <a href="/get-started" class="text-blue-500 font-semibold hover:underline">Learn more</a>
-          <a href="/create-account" class="bg-blue-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors duration-300 text-center">
-            Create Account
-          </a>
-        </div>
-      </div>
-      <div class="w-full md:w-96 bg-gray-50 rounded-lg shadow-lg p-8">
-        <h3 class="text-2xl font-semibold mb-4">Get a guided session</h3>
-        <div class="w-full flex items-center justify-center mb-4">
-          <Image src="/assets/images/get-started/guide.svg" alt="Get guided" width={200} height={200} />
-        </div>
-        <p class="text-gray-600 mb-6">
-          Be guided through the process and receive professional analysis. Recommended for users who are primarily interested in the insights.
-        </p>
-        <div class="flex flex-col space-y-4">
-          <a href="/get-started" class="text-blue-500 font-semibold hover:underline">Learn more</a>
-          <a href="https://forms.gle/KHAw3jhZ71tUzAvB8" target="_blank" class="bg-blue-500 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors duration-300 text-center">
-            Schedule
-          </a>
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>
+<style>
+.bg-main {
+  background: #e7f5e7;
+  z-index: 1;
+}
+
+.card {
+  width: 100%;
+  max-width: 24rem; /* Adjust the width as needed */
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.card .image-container {
+  height: 12rem; /* Adjust height as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.card img {
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card img:hover {
+  transform: scale(1.05);
+}
+
+.card p {
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+}
+
+.card .actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card .actions a {
+  display: inline-block;
+  text-align: center;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+
+.card .actions .learn-more {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.card .actions .learn-more:hover {
+  text-decoration: underline;
+}
+
+.card .actions .action {
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  text-decoration: none;
+}
+
+.card .actions .action:hover {
+  background-color: #2563eb;
+}
+
+</style>
