@@ -3,8 +3,29 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/landing/Header.astro';
 import HowItWorks from '../components/landing/HowItWorks.astro';
 import Features from '../components/landing/Features.astro';
-import GetStarted from '../components/landing/GetStarted.astro';
 import FAQ from '../components/FAQ.astro';
+import AccountCard from '../components/landing/AccountCard.astro';
+
+const individualCards = [
+  {
+    title: "Forge your own Financial Pathway",
+    image: "/get-started/forger.svg",
+    alt: "Forge",
+    description: "Use Perfingo in your own way. Recommended for users with good personal finance knowledge.",
+    learnMoreLink: "/get-started",
+    actionLink: "/create-account",
+    actionText: "Create Account",
+  },
+  {
+    title: "Get a guided session",
+    image: "/get-started/guide.svg",
+    alt: "Guide",
+    description: "Be guided through the process and receive professional analysis. Recommended for users who are primarily interested in the insights.",
+    learnMoreLink: "/get-started",
+    actionLink: "/guided-session-form",
+    actionText: "Schedule",
+  },
+];
 ---
 
 <Layout title="Perfingo - Navigate finances with clarity and confidence">
@@ -31,7 +52,10 @@ import FAQ from '../components/FAQ.astro';
       </div>
     </div>
     <Features/>
-    <GetStarted />
+    <div class="py-20 bg-gradient-to-br from-white to-secondary-50">
+      <h2 class="text-4xl font-bold text-center mb-16 text-neutral-800">Get started with Perfingo</h2>
+      <AccountCard cards={individualCards}/>
+    </div>
     <FAQ />
   </main>
 </Layout>

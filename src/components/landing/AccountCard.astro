@@ -1,31 +1,18 @@
 ---
 import { Image } from 'astro:assets';
+import type Card from "../../types/card";
 
-const cards = [
-  {
-    title: "Forge your own Financial Pathway",
-    image: "/get-started/forger.svg",
-    alt: "Forge",
-    description: "Use Perfingo in your own way. Recommended for users with good personal finance knowledge.",
-    learnMoreLink: "/get-started",
-    actionLink: "/create-account",
-    actionText: "Create Account",
-  },
-  {
-    title: "Get a guided session",
-    image: "/get-started/guide.svg",
-    alt: "Guide",
-    description: "Be guided through the process and receive professional analysis. Recommended for users who are primarily interested in the insights.",
-    learnMoreLink: "/get-started",
-    actionLink: "/guided-session-form",
-    actionText: "Schedule",
-  },
-];
+
+export interface Props {
+  cards: Card[];
+}
+
+
+const { cards } = Astro.props;
 ---
 
-<section class="py-20 bg-gradient-to-br from-white to-secondary-50">
+<section>
   <div class="container mx-auto px-4">
-    <h2 class="text-4xl font-bold text-center mb-16 text-neutral-800">Get started with Perfingo</h2>
     <div class="flex flex-wrap justify-center gap-8">
       {cards.map((card) => (
         <div class="w-full md:w-96 bg-white rounded-lg shadow-lg p-8 transition-all duration-300 hover:shadow-xl">
