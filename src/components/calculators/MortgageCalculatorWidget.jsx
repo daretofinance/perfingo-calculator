@@ -173,7 +173,7 @@ const MortgageCalculatorWidget = () => {
                 placeholder="Enter age"
               />
             </div>
-            {(applicant.citizenship === 'citizen' || applicant.citizenship === 'pr') && (
+            {(applicant.citizenship === 'Singaporean' || applicant.citizenship === 'Permanent Resident') && (
               <div>
                 <label htmlFor={`cpfOA-${index}`} className="block text-gray-700 font-semibold">CPF OA Balance:</label>
                 <input
@@ -183,19 +183,6 @@ const MortgageCalculatorWidget = () => {
                   onChange={(e) => handleApplicantChange(index, 'cpfOA', e.target.value)}
                   className="w-full mt-2 p-3 border border-gray-300 rounded-lg"
                   placeholder="Enter CPF OA balance"
-                />
-              </div>
-            )}
-            {loanType === 'Bank' && (
-              <div>
-                <label htmlFor={`liabilities-${index}`} className="block text-gray-700 font-semibold">Current Liabilities:</label>
-                <input
-                  type="text"
-                  id={`liabilities-${index}`}
-                  value={formatCurrency(applicant.liabilities)}
-                  onChange={(e) => handleApplicantChange(index, 'liabilities', e.target.value)}
-                  className="w-full mt-2 p-3 border border-gray-300 rounded-lg"
-                  placeholder="Enter current liabilities"
                 />
               </div>
             )}
@@ -228,19 +215,6 @@ const MortgageCalculatorWidget = () => {
               {Object.keys(flatTypes).map((type) => (
                 <option key={type} value={type}>{type}</option>
               ))}
-            </select>
-          </div>
-          <div>
-            <label htmlFor="loan-type" className="block text-gray-700 font-semibold">Loan Type:</label>
-            <select
-              id="loan-type"
-              value={loanType}
-              onChange={(e) => setLoanType(e.target.value)}
-              className="w-full mt-2 p-3 border border-gray-300 rounded-lg"
-            >
-              <option value="">Select</option>
-              <option value="HDB">HDB</option>
-              <option value="Bank">Bank</option>
             </select>
           </div>
           <div>

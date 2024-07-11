@@ -1,0 +1,49 @@
+---
+import { Icon } from 'astro-icon/components';
+
+
+const steps = [
+  {
+    icon: 'mdi:account-edit',
+    title: 'Input Your Data',
+    description: 'Easily enter your financial information'
+  },
+  {
+    icon: 'mdi:chart-line',
+    title: 'Analyze',
+    description: 'Our AI processes your financial data'
+  },
+  {
+    icon: 'mdi:lightbulb',
+    title: 'Get Insights',
+    description: 'Receive personalized financial advice'
+  },
+  {
+    icon: 'mdi:target',
+    title: 'Achieve Goals',
+    description: 'Track progress and reach your targets'
+  }
+];
+---
+
+<section class="py-20 bg-white">
+  <div class="container mx-auto">
+    <h2 class="text-3xl font-bold text-center mb-12 text-neutral-800">How Perfingo Works</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {steps.map((step, index) => (
+        <div class="flex flex-col items-center text-center">
+          <div class="w-20 h-20 bg-secondary-100 rounded-full flex items-center justify-center mb-4">
+            <Icon name={step.icon} class="w-10 h-10 text-secondary-500" />
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-neutral-700">{step.title}</h3>
+          <p class="text-neutral-600">{step.description}</p>
+          {index < steps.length - 1 && (
+            <div class="hidden lg:block absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2">
+              <Icon name="mdi:arrow-right" class="w-8 h-8 text-secondary-300" />
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

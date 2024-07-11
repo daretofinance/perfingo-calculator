@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { Tooltip } from 'react-tooltip';
+import 'react-tooltip/dist/react-tooltip.css';
 import PremiumFeatureLock from "../PremiumFeatureLock";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title, PointElement, LineElement } from 'chart.js';
+import { Chart as ChartJS, ArcElement, Legend, CategoryScale, LinearScale, BarElement, Title, PointElement, LineElement } from 'chart.js';
 import { Bar, Line } from 'react-chartjs-2';
 import { motion } from 'framer-motion';
 import { Home, CreditCard, Clock, DollarSign, Package, AlertTriangle, Users, Landmark, PlusCircle, ArrowDownCircle, Lock } from 'lucide-react';
-
-ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, Title, PointElement, LineElement);
+ChartJS.register(ArcElement, Legend, CategoryScale, LinearScale, BarElement, Title, PointElement, LineElement);
 
 const HousingResultVisualization = ({
   oa_list,
@@ -75,6 +76,16 @@ const HousingResultVisualization = ({
 
   }, [])
 
+  const processTooltip = (content) => {
+    if (typeof content === 'string') {
+      // Split the string by newline characters and wrap each line in a <p> tag
+      return content.split('\n').map((line, index) => (
+        <p key={index} className="mb-1 last:mb-0">{line}</p>
+      ));
+    }
+    return content; // If it's already JSX, return as is
+  };
+
   const generateLineChartData = (data, label) => {
     const applicant1Data = data.applicant1;
     let applicant2Data = [];
@@ -127,18 +138,36 @@ const HousingResultVisualization = ({
   };
 
 
-  const renderInfoItem = (icon, title, value, colorClass) => {
+  const renderInfoItem = (icon, title, value, colorClass, tooltip = null) => {
     if (value.includes("NaN")) {
       return null;
     }
+
+    const itemId = `info-item-${title.replace(/\s+/g, '-').toLowerCase()}`;
     
     return (
-      <div key={title} className="bg-gray-100 p-4 rounded-lg flex items-center">
+      <div key={title} className="bg-gray-100 p-4 rounded-lg flex items-center relative">
         {React.createElement(icon, { className: `${colorClass} mr-3`, size: 24 })}
         <div>
-          <p className="font-semibold">{title}</p>
+          <p className="font-semibold">
+            {title}
+            {tooltip && (
+              <span 
+                className="ml-1 text-gray-500 cursor-help"
+                data-tooltip-id={itemId}
+                data-tooltip-content={tooltip}
+              >
+                ⓘ
+              </span>
+            )}
+          </p>
           <p className={`text-xl font-bold ${colorClass}`}>{value}</p>
         </div>
+        {tooltip && (
+          <Tooltip className='z-10' id={itemId} place="top" effect="solid">
+            {processTooltip(tooltip)}
+          </Tooltip>
+        )}
       </div>
     );
   };
@@ -230,10 +259,10 @@ const HousingResultVisualization = ({
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {renderInfoItem(Home, "Estimated Cost of Flat", formatCurrency(housing_info?.est_cost_of_flat_at_purchase), "text-blue-600")}
                 {renderInfoItem(CreditCard, "Loan Amount", formatCurrency(housing_info?.loan_amount), "text-green-600")}
-                {renderInfoItem(Clock, "Loan Tenure", housing_info?.loan_tenure != null ? `${housing_info.loan_tenure} months` : 'N/A', "text-purple-600")}
+                {renderInfoItem(Clock, "Loan Tenure", housing_info?.loan_tenure != null ? `300 months` : 'N/A', "text-purple-600")}
                 {renderInfoItem(DollarSign, "Minimum Monthly Payment", formatCurrency(housing_info?.min_monthly_payment), "text-red-600")}
-                {renderInfoItem(Package, "Miscellaneous Cost", formatCurrency(housing_info?.miscellaneous_cost), "text-orange-600")}
-                {renderInfoItem(AlertTriangle, "Additional Cash Outlay", formatCurrency(housing_info?.additional_cash_outlay_from_loan_shortage), "text-indigo-600")}
+                {renderInfoItem(Package, "Miscellaneous Cost", formatCurrency(housing_info?.miscellaneous_cost), "text-orange-600", "Miscellaneous costs such as Buyer Stamp duty, Survey fees, legal fees etc.")}
+                {renderInfoItem(AlertTriangle, "Additional Cash Outlay", formatCurrency(housing_info?.additional_cash_outlay_from_loan_shortage), "text-indigo-600", "Additional cash outlay required due to loan shortage.")}
                 {renderInfoItem(Users, "Combined Annual Income at Completion", formatCurrency(housing_info?.combined_income_at_flat_completion), "text-teal-600")}
                 </div>
                 
@@ -245,7 +274,19 @@ const HousingResultVisualization = ({
                 </div>
                 
                 <div className="mt-4">
-                <h4 className="text-lg font-semibold text-gray-700 mb-2">Additional Payment from OA Excess</h4>
+                <h4 className="text-lg font-semibold text-gray-700 mb-2">
+                  Additional Payment from OA Excess
+                  <span 
+                    className="ml-1 text-gray-500 cursor-help"
+                    data-tooltip-id="info-item-additional-payment-from-oa-excess"
+                    // data-tooltip-content="Members who take an HDB housing loan have the option of retaining up to $20,000 in their Ordinary Account (OA), with the remainder going towards their housing payment."
+                  >
+                    ⓘ
+                  </span>
+                  <Tooltip className='z-10 text-center max-w-[250px]' id="info-item-additional-payment-from-oa-excess" place="top" effect="solid"  style={{'fontSize': "15px"}}>
+                    {processTooltip("Members who take an HDB housing loan have the option of retaining up to $20,000 in their Ordinary Account (OA), \n with the remainder going towards their housing payment.")}
+                  </Tooltip>
+                </h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {renderInfoItem(PlusCircle, "Applicant 1", formatCurrency(housing_info?.additional_payment_from_oa_excess?.applicant1), "text-purple-600")}
                     {renderInfoItem(PlusCircle, "Applicant 2", formatCurrency(housing_info?.additional_payment_from_oa_excess?.applicant2), "text-indigo-600")}

@@ -1,0 +1,170 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const individualFeatures = [
+  {
+    icon: 'mdi:target',
+    title: 'Goal Visualization',
+    description: 'See your financial future and adjust plans in real-time'
+  },
+  {
+    icon: 'mdi:chart-line',
+    title: 'Smart Investing',
+    description: 'Get personalized investment strategies and insights'
+  },
+  {
+    icon: 'mdi:account-group',
+    title: 'Couple Planning',
+    description: 'Align financial goals with your partner effortlessly'
+  },
+  {
+    icon: 'mdi:piggy-bank',
+    title: 'CPF Optimization',
+    description: 'Maximize your CPF for housing, healthcare, and retirement'
+  },
+  {
+    icon: 'mdi:calculator-variant',
+    title: 'Tax Planning',
+    description: 'Optimize your taxes with Singapore-specific strategies'
+  },
+  {
+    icon: 'mdi:shield-check',
+    title: 'Risk Management',
+    description: 'Comprehensive insurance and wealth protection advice'
+  }
+];
+
+const advisorFeatures = [
+  {
+    icon: 'mdi:view-dashboard',
+    title: 'Client Dashboard',
+    description: 'Holistic view of each client\'s financial health'
+  },
+  {
+    icon: 'mdi:chart-scatter-plot',
+    title: 'Scenario Planning',
+    description: 'Model different financial strategies for clients'
+  },
+  {
+    icon: 'mdi:handshake',
+    title: 'Client Engagement',
+    description: 'Tools for better client communication and trust-building'
+  },
+  {
+    icon: 'mdi:file-document-edit',
+    title: 'Compliance Support',
+    description: 'Stay compliant with integrated regulatory tools'
+  },
+  {
+    icon: 'mdi:account-convert',
+    title: 'Client Onboarding',
+    description: 'Streamlined process for new client acquisition'
+  },
+  {
+    icon: 'mdi:trending-up',
+    title: 'Performance Tracking',
+    description: 'Monitor and report on client portfolio performance'
+  }
+];
+---
+
+<section id="features" class="py-20 bg-neutral-100">
+  <div class="container mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4 text-neutral-800">Features Tailored for You</h2>
+      <p class="text-neutral-600 max-w-2xl mx-auto" id="feature-subtitle">
+        Empowering individuals and couples to navigate their financial journey with confidence
+      </p>
+    </div>
+
+    <div class="mb-8 flex justify-center">
+      <div class="inline-flex rounded-md shadow-sm" role="group">
+        <button type="button" class="px-4 py-2 text-sm font-medium bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-2 focus:ring-primary-700 focus:text-primary-700 active" id="individual-tab">
+          For Individual/Couples
+        </button>
+        <button type="button" class="px-4 py-2 text-sm font-medium bg-white border border-gray-200 rounded-r-lg hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-2 focus:ring-primary-700 focus:text-primary-700" id="advisor-tab">
+          For Financial Advisors
+        </button>
+      </div>
+    </div>
+
+    <div id="individual-features">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {individualFeatures.map((feature) => (
+          <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <div class="flex items-center mb-3">
+              <div class="w-10 h-10 bg-secondary-100 rounded-full flex items-center justify-center mr-3">
+                <Icon name={feature.icon} class="w-5 h-5 text-secondary-500" />
+              </div>
+              <h3 class="text-lg font-semibold text-neutral-800">{feature.title}</h3>
+            </div>
+            <p class="text-sm text-neutral-600">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-10 text-center">
+        <a href="/create-account" class="bg-primary-500 text-white px-6 py-2 rounded-lg hover:bg-primary-600 transition-colors duration-300 inline-flex items-center text-sm">
+          Start Your Journey
+          <Icon name="mdi:arrow-right" class="w-4 h-4 ml-2" />
+        </a>
+      </div>
+    </div>
+
+    <div id="advisor-features" class="hidden">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {advisorFeatures.map((feature) => (
+          <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <div class="flex items-center mb-3">
+              <div class="w-10 h-10 bg-secondary-100 rounded-full flex items-center justify-center mr-3">
+                <Icon name={feature.icon} class="w-5 h-5 text-secondary-500" />
+              </div>
+              <h3 class="text-lg font-semibold text-neutral-800">{feature.title}</h3>
+            </div>
+            <p class="text-sm text-neutral-600">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-10 text-center">
+        <a href="https://forms.gle/6PNrkN77Y1iugNhBA" target="_blank" class="bg-primary-500 text-white px-6 py-2 rounded-lg hover:bg-primary-600 transition-colors duration-300 inline-flex items-center text-sm">
+          Schedule a Demo
+          <Icon name="mdi:arrow-right" class="w-4 h-4 ml-2" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const individualTab = document.getElementById('individual-tab');
+  const advisorTab = document.getElementById('advisor-tab');
+  const individualFeatures = document.getElementById('individual-features');
+  const advisorFeatures = document.getElementById('advisor-features');
+  const featureSubtitle = document.getElementById('feature-subtitle');
+
+  if (!individualTab || !advisorTab || !individualFeatures || !advisorFeatures || !featureSubtitle) {
+    throw new Error('One or more elements are missing');
+  }
+
+  individualTab.addEventListener('click', () => {
+    individualTab.classList.add('active');
+    advisorTab.classList.remove('active');
+    individualFeatures.classList.remove('hidden');
+    advisorFeatures.classList.add('hidden');
+    featureSubtitle.textContent = 'Empowering individuals and couples to navigate their financial journey with confidence';
+  });
+
+  advisorTab.addEventListener('click', () => {
+    advisorTab.classList.add('active');
+    individualTab.classList.remove('active');
+    advisorFeatures.classList.remove('hidden');
+    individualFeatures.classList.add('hidden');
+    featureSubtitle.textContent = 'Equipping financial advisors with powerful tools to enhance client service and streamline workflows';
+  });
+</script>
+
+<style>
+  .active {
+    background-color: #139f13;
+    color: white;
+  }
+</style>

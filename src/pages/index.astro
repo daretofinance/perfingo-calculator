@@ -1,107 +1,44 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import CalculatorCard from '../components/CalculatorCard.astro';
-
-const calculators = [
-  { name: 'Home Mortgage Loan Calculator', description: 'Find out how feasible your house purchase is in Singapore.', url: '/calculators/mortgage-calculator' },
-];
-
-const comingSoonCalculators = [
-  { name: 'Income Tax Calculator', description: 'Calculate your tax payable based on your annual income.' },
-  { name: 'HDB Loan Eligibility Calculator', description: 'Find out your eligibility for HDB loans.' },
-  { name: 'CPF Contribution Calculator', description: 'Calculate your CPF contributions.' },
-  { name: 'Retirement Savings Calculator', description: 'Plan for your retirement with our savings calculator.' },
-];
+import Header from '../components/landing/Header.astro';
+import HowItWorks from '../components/landing/HowItWorks.astro';
+import Features from '../components/landing/Features.astro';
+import GetStarted from '../components/landing/GetStarted.astro';
+import FAQ from '../components/FAQ.astro';
 ---
 
-<Layout>
-  <main class="bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen">
-    <div class="container mx-auto px-4 py-20 relative overflow-hidden">
-      <div class="absolute top-0 left-0 w-full h-full bg-blue-500 opacity-5 transform -skew-y-6"></div>
-      <div class="relative z-10">
-        <h1 class="py-10 text-5xl md:text-7xl font-extrabold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-400">
-          Perfingo Financial Calculators
-        </h1>
-        <p class="text-xl md:text-2xl text-center text-gray-600 max-w-3xl mx-auto">
-          Empower your financial decisions with clarity and confidence
-        </p>
+<Layout title="Perfingo - Navigate finances with clarity and confidence">
+  <main class="bg-gradient-to-br from-primary-50 to-secondary-100 min-h-screen font-body">
+    <Header />
+    <HowItWorks />
+    <div class="relative w-full h-screen">
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent to-secondary-100 z-10"></div>
+      <iframe
+        class="w-full h-full object-cover"
+        src="https://www.youtube.com/embed/ZW-7l1H9hRQ?playlist=ZW-7l1H9hRQ&loop=1&mute=1&hd=1&autoplay=1&controls=0&showinfo=0&rel=0"
+        title="Perfingo Demo Video"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+      <div class="absolute inset-0 flex items-center justify-center z-20">
+        <div class="text-center text-neutral-800">
+          <h2 class="text-4xl font-bold mb-4 shadow-text">Experience Perfingo in Action</h2>
+          <p class="text-xl mb-8 shadow-text">Watch how our platform simplifies financial planning</p>
+          <a href="#features" class="bg-primary-500 text-white px-6 py-3 rounded-lg hover:bg-primary-600 transition-colors duration-300">
+            Learn More
+          </a>
+        </div>
       </div>
     </div>
-
-    <section id="available-calculators" class="py-20">
-      <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Available Calculator</h2>
-        <div class="flex justify-center">
-          <div class="w-full max-w-lg transform hover:scale-105 transition-transform duration-300">
-            {calculators.map(calculator => (
-              <CalculatorCard 
-                name={calculator.name} 
-                description={calculator.description} 
-                url={calculator.url}
-                comingSoon={false}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="coming-soon" class="bg-gradient-to-r from-blue-50 to-teal-50 py-20">
-      <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Coming Soon</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {comingSoonCalculators.map(calculator => (
-            <CalculatorCard name={calculator.name} description={calculator.description} comingSoon={true} />
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section id="features" class="py-20 bg-white">
-      <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">Why Choose Perfingo Calculators?</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-          <div class="bg-gradient-to-br from-blue-50 to-teal-50 p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
-            <div class="text-blue-500 mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <h3 class="text-2xl font-semibold mb-4 text-gray-800">Accurate Results</h3>
-            <p class="text-gray-600">Our calculators use up-to-date information and formulas to provide you with the most accurate results possible.</p>
-          </div>
-          <div class="bg-gradient-to-br from-blue-50 to-teal-50 p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
-            <div class="text-teal-500 mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-              </svg>
-            </div>
-            <h3 class="text-2xl font-semibold mb-4 text-gray-800">User-Friendly Interface</h3>
-            <p class="text-gray-600">Easy-to-use interface designed to make complex financial calculations simple and accessible.</p>
-          </div>
-          <div class="bg-gradient-to-br from-blue-50 to-teal-50 p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
-            <div class="text-blue-500 mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </div>
-            <h3 class="text-2xl font-semibold mb-4 text-gray-800">Comprehensive Analysis</h3>
-            <p class="text-gray-600">Get detailed breakdowns and explanations to help you understand your financial situation better.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="cta" class="bg-gradient-to-r from-blue-600 to-teal-400 text-white py-20">
-      <div class="container mx-auto px-4 text-center">
-        <h2 class="text-4xl font-bold mb-8">Ready to Take Control of Your Finances?</h2>
-        <p class="text-xl mb-10 max-w-2xl mx-auto">
-          Enjoy our free calculators? Then you will love our full suite of financial tools and services. Sign up for a free account today!
-        </p>
-        <a href="https://www.perfingo.com/create-account" class="bg-white text-blue-600 py-4 px-10 rounded-full font-semibold text-lg hover:bg-gray-100 transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-          Create a Free Account
-        </a>
-      </div>
-    </section>
+    <Features/>
+    <GetStarted />
+    <FAQ />
   </main>
 </Layout>
+
+<style>
+  .shadow-text {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+</style>

@@ -1,0 +1,56 @@
+---
+const faqs = [
+  {
+    title: "What is Perfingo?",
+    description: "Perfingo is a comprehensive financial planning platform that helps individuals and couples navigate their finances with clarity and confidence. It provides tools for budgeting, investment insights, goal setting, and collaborative financial management."
+  },
+  {
+    title: "How does Perfingo work?",
+    description: "Perfingo works by analyzing your financial information, goals, and preferences to provide personalized insights and recommendations. It offers features such as budget tracking, investment analysis, goal feasibility assessments, and collaborative tools for couples."
+  },
+  {
+    title: "Is my financial data secure with Perfingo?",
+    description: "Yes, we take data security very seriously. Perfingo uses bank-level encryption to protect your financial information. We do not sell your personal data, and you have full control over what information you share."
+  },
+  {
+    title: "Can I use Perfingo if I'm not based in Singapore?",
+    description: "While Perfingo is optimized for the Singaporean market, including features like CPF integration, many of its core financial planning tools can be useful for users from other countries. However, some specific features may not be applicable outside of Singapore."
+  },
+  {
+    title: "How much does Perfingo cost?",
+    description: "Perfingo offers different pricing tiers to suit various needs. Please check our pricing page for the most up-to-date information on our plans and features."
+  }
+];
+---
+
+<section class="py-20 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-16">Frequently Asked Questions</h2>
+    <div class="max-w-3xl mx-auto">
+      {faqs.map((faq, index) => (
+        <div class="mb-6">
+          <details class="bg-white rounded-lg shadow-md overflow-hidden">
+            <summary class="px-6 py-4 cursor-pointer font-semibold flex items-center justify-between">
+              {faq.title}
+              <svg class="w-6 h-6 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="px-6 py-4 text-gray-600">
+              {faq.description}
+            </p>
+          </details>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+  details[open] > summary svg {
+    transform: rotate(180deg);
+  }
+</style>

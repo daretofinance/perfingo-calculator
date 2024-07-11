@@ -1,0 +1,80 @@
+---
+import { Image } from 'astro:assets';
+
+const appScreenShot = [
+  { link: '/app-screenshot/annual_cashflow.png', width: 300, height: 300 },
+  { link: '/app-screenshot/annual_cash.png', width: 200, height: 300 },
+  { link: '/app-screenshot/basic-information.svg', width: 200, height: 300 },
+  { link: '/app-screenshot/room.svg', width: 200, height: 300 },
+];
+---
+
+<header class="py-20 md:py-32 relative overflow-hidden">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">
+        Navigate finances with <br />
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-green-500">
+          clarity and confidence
+        </span>
+      </h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Perfingo helps you take the guesswork out of financial planning so you can navigate life at ease
+      </p>
+    </div>
+    <div class="hidden md:flex justify-center items-end space-x-8 mb-16">
+      {appScreenShot.map((image, index) => (
+        <div class={`relative ${index === 0 ? '-left-16 -bottom-8' : index === 1 ? '-top-8' : index === 3 ? '-right-16 -bottom-8' : ''}`}>
+          <Image
+            src={image.link}
+            alt={`App Screenshot ${index + 1}`}
+            width={image.width}
+            height={image.height}
+            class="rounded-lg shadow-xl"
+          />
+        </div>
+      ))}
+    </div>
+    <div class="md:hidden overflow-hidden">
+      <div class="flex animate-carousel">
+        {[...appScreenShot, ...appScreenShot, ...appScreenShot].map((image, index) => (
+          <div class="flex-shrink-0 w-64 mx-2">
+            <Image
+              src={image.link}
+              alt={`App Screenshot ${index + 1}`}
+              width={image.width}
+              height={image.height}
+              class="rounded-lg shadow-xl"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+  <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
+    <div class="absolute top-10 left-[-50px] w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+    <div class="absolute top-[200px] right-[-50px] w-96 h-96 bg-green-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+  </div>
+</header>
+
+<style>
+  @keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  @keyframes carousel {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+  .animate-carousel {
+    animation: carousel 60s linear infinite;
+  }
+</style>
