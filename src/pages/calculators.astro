@@ -14,7 +14,7 @@ const comingSoonCalculators = [
 ];
 ---
 
-<Layout title=''>
+<Layout title='Perfingo Calculators'>
   <main class="bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen">
     <div class="container mx-auto px-4 py-20 relative overflow-hidden">
       <div class="absolute top-0 left-0 w-full h-full bg-blue-500 opacity-5 transform -skew-y-6"></div>
@@ -53,41 +53,6 @@ const comingSoonCalculators = [
           {comingSoonCalculators.map(calculator => (
             <CalculatorCard name={calculator.name} description={calculator.description} comingSoon={true} />
           ))}
-        </div>
-      </div>
-    </section>
-
-    <section id="features" class="py-20 bg-white">
-      <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">Why Choose Perfingo Calculators?</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-          <div class="bg-gradient-to-br from-blue-50 to-teal-50 p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
-            <div class="text-blue-500 mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <h3 class="text-2xl font-semibold mb-4 text-gray-800">Accurate Results</h3>
-            <p class="text-gray-600">Our calculators use up-to-date information and formulas to provide you with the most accurate results possible.</p>
-          </div>
-          <div class="bg-gradient-to-br from-blue-50 to-teal-50 p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
-            <div class="text-teal-500 mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-              </svg>
-            </div>
-            <h3 class="text-2xl font-semibold mb-4 text-gray-800">User-Friendly Interface</h3>
-            <p class="text-gray-600">Easy-to-use interface designed to make complex financial calculations simple and accessible.</p>
-          </div>
-          <div class="bg-gradient-to-br from-blue-50 to-teal-50 p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
-            <div class="text-blue-500 mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </div>
-            <h3 class="text-2xl font-semibold mb-4 text-gray-800">Comprehensive Analysis</h3>
-            <p class="text-gray-600">Get detailed breakdowns and explanations to help you understand your financial situation better.</p>
-          </div>
         </div>
       </div>
     </section>

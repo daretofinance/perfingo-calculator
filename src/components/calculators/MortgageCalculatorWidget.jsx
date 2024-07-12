@@ -121,7 +121,7 @@ const MortgageCalculatorWidget = () => {
 
   return (
     <div className="container mx-auto p-4 lg:p-8">
-      <h2 className="text-3xl font-bold text-primary-600 mb-8 text-center">Check Your Eligibility</h2>
+      <h2 className="text-3xl font-bold text-primary-600 mb-8 text-center">Calculate your HDB Loan Quantum</h2>
       {applicants.map((applicant, index) => (
         <div key={index} className="mb-8 bg-white p-6 rounded-lg shadow-md">
           <div className="flex justify-between items-center">
