@@ -142,6 +142,7 @@ const advisorFeatures = [
   const featureSubtitle = document.getElementById('feature-subtitle');
 
   if (!individualTab || !advisorTab || !individualFeatures || !advisorFeatures || !featureSubtitle) {
+    console.error(`Elements not found: ${individualTab}, ${advisorTab}, ${individualFeatures}, ${advisorFeatures}, ${featureSubtitle}`)
     throw new Error('One or more elements are missing');
   }
 
