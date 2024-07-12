@@ -18,6 +18,17 @@ const { title, description, keywords, calculatorType, canonicalURL = Astro.url }
 <!DOCTYPE html>
 <html lang="en">
   <head>
+      <!-- Google tag -->
+		<script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-RT5CSDWMP7"></script>
+		<script type="text/partytown">
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag() {
+			dataLayer.push(arguments);
+		  }
+		  gtag('js', new Date());
+	
+		  gtag('config', 'G-RT5CSDWMP7');
+		</script>
     <BaseHead title={title} description={description} />
     <link rel="canonical" href={canonicalURL} />
     <meta name="keywords" content={keywords}>
