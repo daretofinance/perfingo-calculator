@@ -1,26 +1,12 @@
 ---
-const faqs = [
-  {
-    title: "What is Perfingo?",
-    description: "Perfingo is a comprehensive financial planning platform that helps individuals and couples navigate their finances with clarity and confidence. It provides tools for budgeting, investment insights, goal setting, and collaborative financial management."
-  },
-  {
-    title: "How does Perfingo work?",
-    description: "Perfingo works by analyzing your financial information, goals, and preferences to provide personalized insights and recommendations. It offers features such as budget tracking, investment analysis, goal feasibility assessments, and collaborative tools for couples."
-  },
-  {
-    title: "Is my financial data secure with Perfingo?",
-    description: "Yes, we take data security very seriously. Perfingo uses bank-level encryption to protect your financial information. We do not sell your personal data, and you have full control over what information you share."
-  },
-  {
-    title: "Can I use Perfingo if I'm not based in Singapore?",
-    description: "While Perfingo is optimized for the Singaporean market, including features like CPF integration, many of its core financial planning tools can be useful for users from other countries. However, some specific features may not be applicable outside of Singapore."
-  },
-  {
-    title: "How much does Perfingo cost?",
-    description: "Perfingo offers different pricing tiers to suit various needs. Please check our pricing page for the most up-to-date information on our plans and features."
-  }
-];
+import type Faq from '../types/faq';
+
+
+export interface Props {
+  faqs: Faq[];
+}
+
+const { faqs } = Astro.props;
 ---
 
 <section class="py-20 bg-gray-50">

@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import AccountCard from '../components/landing/AccountCard.astro';
 import FAQ from '../components/FAQ.astro';
 import type Card from "../types/card";
+import type Faq from "../types/faq";
 
 
 const comparisonTable = [
@@ -55,6 +56,70 @@ const individualCards:Card[] = [
     actionText: "Schedule",
   },
 ];
+
+export const faqsIndiviudal: Faq[] = [
+  {
+    title: 'Faq 1: How does Perfingo help in setting and achieving financial goals?',
+    description:
+      'Perfingo helps you to visualise the feasibility of your goals and the impact of your financial decisions on them. We allow you to integrate life goals into your financial planning, offering customised strategies and advice to help you align your finances with your objectives and achieve them.',
+  },
+  {
+    title: 'Faq 2: Can couples use Perfingo for joint financial planning?',
+    description:
+      'Yes, Perfingo has features that allow couples to collaboratively manage and plan their finances, fostering transparency and financial harmony in relationships. However, both partners must have their own Perfingo accounts.',
+  },
+  {
+    title: "Faq 3: What's the difference between Perfingo and other personal finance app?",
+    description:
+      'Perfingo is a personal finance app that helps you to plan and achieve your life goals. We are not just a budgeting app. We help you to visualise the feasibility of your goals and the impact of your financial decisions on them. We allow you to integrate life goals into your financial planning, offering customised strategies and advice to help you align your finances with your objectives and achieve them.',
+  },
+  {
+    title: 'Faq 4: How does Perfingo ensure the security and privacy of my financial data?',
+    description:
+      'Perfingo prioritises your data security. Firstly, we only ask for your email address. We also employ robust encryption and security protocols to ensure that your financial information is protected from unauthorised access and threats.',
+  },
+  {
+    title: 'Faq 5: Are we working with any financial institutions?',
+    description:
+      'Perfingo is not working with any financial institutions directly. \
+      We only licensed our software to financial planners to help them better serve their clients. \
+      Only when you requested for a session with a financial planner, then we will connect you with them.',
+  },
+];
+
+export const faqsAgent: Faq[] = [
+  {
+    title: 'How can Perfingo benefit my practice?',
+    description:
+      "Perfingo offers several benefits for financial advisors:<ul><li>Seamless prospecting without feeling salesy, using interactive visualisation tools that make financial information accessible for clients.</li><li>Strengthens client relationships with long-term engagement features and comprehensive annual reviews based on clients' goals.</li><li>Streamlines financial planning by providing a holistic view of clients' finances, making it easier to offer personalised advice and build stronger connections.</li><li>Advisors appreciate its user-friendly interface and the ability to foster genuine relationships with both prospects and existing clients.</li></ul>",
+  },
+  {
+    title: 'What pricing plans are available for financial advisors?',
+    description:
+      'Perfingo offers flexible subscription plans to suit different needs, with the option of annual and monthly subscriptions. The annual plan is more cost-effective.',
+  },
+  {
+    title: 'What makes Perfingo different from other competitor platforms?',
+    description:
+      'Perfingo offers several unique advantages: <br> <ul> <li>Clients have lifelong access to the financial plans you create together, enabling continuous review and fostering long-term relationship building.</li> <li>The platform supports couple planning, making it easier to address the financial goals of partners together.</li> <li>We are committed to constant improvement, regularly updating our app to enhance user-friendliness and add features that help clients achieve their financial goals.</li> </ul>',
+  },
+  {
+    title: 'What kind of support does Perfingo offer?',
+    description:
+      'We provide onboarding and training sessions to ensure you get the most out of Perfingo. Our support team is available to assist with any questions or issues you may encounter.',
+  },
+  {
+    title: 'How do I get started with Perfingo?',
+    description:
+      "To get started with Perfingo, simply sign up for a demo on our website. We will contact you to demonstrate how you can best utilize Perfingo's features. Additionally, you will have direct access to our helpdesk for any issues or questions that may arise moving forward.",
+  },
+  {
+    title: 'How secure is my data on Perfingo?',
+    description:
+      "We prioritise security and use advanced encryption methods to protect your data. Our platform complies with industry standards and regulations to ensure the safety of your information and your clients' information.",
+  },
+];
+
 ---
 
 <Layout title="Get Started with Perfingo">
@@ -62,100 +127,117 @@ const individualCards:Card[] = [
     <div class="container mx-auto px-4">
       <h1 class="text-4xl font-bold text-center mb-8">Choose your path</h1>
       <div class="text-center mb-12">
-        <button id="toggle-view" class="text-primary-500 font-medium hover:underline">
-          I am planning for myself
+        <button id="toggle-view" class="toggle-btn bg-primary-500 text-white px-6 py-3 rounded-full hover:bg-primary-600 transition-all duration-300 ease-in-out">
+          <span class="user-text">Planning for a client? Click here</span>
+          <span class="advisor-text hidden">Planning for yourself? Click here</span>
         </button>
       </div>
 
-      <div id="user-view">
-        <AccountCard cards={individualCards}/>
-        
-        <div class="mt-20">
-          <h3 class="text-2xl font-bold text-center mb-8">Choose Your Path to Financial Success</h3>
-          <div class="overflow-x-auto">
-            <table class="w-full bg-white rounded-lg shadow-lg">
-              <thead class="bg-gray-100">
-                <tr>
-                  <th class="p-4 text-left text-gray-600">Features</th>
-                  <th class="p-4 text-center text-gray-600">Self-Guided</th>
-                  <th class="p-4 text-center text-gray-600">Expert-Guided</th>
-                </tr>
-              </thead>
-              <tbody>
-                {comparisonTable.map((row) => (
-                  <tr>
-                    <td class="p-4 border-t font-medium">{row.feature}</td>
-                    <td class="p-4 border-t text-center">{row.selfGuided}</td>
-                    <td class="p-4 border-t text-center">{row.expertGuided}</td>
-                  </tr>
-                ))}
-                <tr>
-                  <td class="p-4 border-t"></td>
-                  <td class="p-4 border-t text-center">
-                    <a href="/create-account" class="bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors duration-300 inline-block">
-                      Get started
-                    </a>
-                  </td>
-                  <td class="p-4 border-t text-center">
-                    <a href="/guided-session-form" class="bg-primary-500 text-white px-4 py-2 rounded-lg hover:bg-primary-600 transition-colors duration-300 inline-block">
-                      Book Session
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+      <div id="view-container" class="relative overflow-hidden">
+        <div id="user-view" class="transition-all duration-500 ease-in-out">
+          <AccountCard cards={individualCards}/>
+          
+          <div class="mt-20">
+            <h3 class="text-2xl font-bold text-center mb-8">Choose Your Path to Financial Success</h3>
+            <div class="overflow-x-auto">
+              <table class="w-full bg-white rounded-lg shadow-lg">
+                <!-- ... (keep your existing table content) ... -->
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div id="advisor-view" class="absolute top-0 left-full w-full transition-all duration-500 ease-in-out">
+          <div class="flex flex-wrap justify-center gap-8">
+            <AccountCard cards={advisorCards}/>
           </div>
         </div>
       </div>
-
-      <div id="advisor-view" class="hidden">
-        <div class="flex flex-wrap justify-center gap-8">
-            <AccountCard cards={advisorCards}/>
-        </div>
-      </div>
     </div>
   </section>
 
-  <section class="py-20 bg-white">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-14">What can Perfingo do?</h2>
-      <div class="max-w-3xl mx-auto">
-        <!-- Add your demo list here -->
-      </div>
-    </div>
-  </section>
-
-  <FAQ />
+  <div id="faq-container" class="relative overflow-hidden">
+    <section id="user-faq" class="transition-all duration-500 ease-in-out">
+      <FAQ faqs={faqsIndiviudal}/>
+    </section>
+    <section id="advisor-faq" class="absolute top-0 left-full w-full transition-all duration-500 ease-in-out">
+      <FAQ faqs={faqsAgent}/>
+    </section>
+  </div>
 </Layout>
 
 <script>
-  const toggleViewBtn = document.getElementById('toggle-view');
+  const toggleViewBtn = document.getElementById('toggle-view') as HTMLButtonElement | null;
   const userView = document.getElementById('user-view');
   const advisorView = document.getElementById('advisor-view');
+  const userFaq = document.getElementById('user-faq');
+  const advisorFaq = document.getElementById('advisor-faq');
+  const userText = document.querySelector('.user-text');
+  const advisorText = document.querySelector('.advisor-text');
 
   let currentView = 'user';
 
-  if (toggleViewBtn && userView && advisorView) {
-      toggleViewBtn.addEventListener('click', () => {
-        if (currentView === 'user') {
-          userView.classList.add('hidden');
-          advisorView.classList.remove('hidden');
-          toggleViewBtn.textContent = 'I am planning for myself';
-          currentView = 'advisor';
-        } else {
-          userView.classList.remove('hidden');
-          advisorView.classList.add('hidden');
-          toggleViewBtn.textContent = 'I am an Advisor';
-          currentView = 'user';
+  if (toggleViewBtn && userView && advisorView && advisorFaq && userFaq && userText && advisorText) {
+    toggleViewBtn.addEventListener('click', () => {
+      if (toggleViewBtn instanceof HTMLButtonElement) {
+        toggleViewBtn.disabled = true;
+      }
+
+      if (currentView === 'user') {
+        userView.style.transform = 'translateX(-100%)';
+        advisorView.style.transform = 'translateX(-100%)';
+        userFaq.style.transform = 'translateX(-100%)';
+        advisorFaq.style.transform = 'translateX(-100%)';
+        userText.classList.add('hidden');
+        advisorText.classList.remove('hidden');
+        currentView = 'advisor';
+      } else {
+        userView.style.transform = 'translateX(0)';
+        advisorView.style.transform = 'translateX(0)';
+        userFaq.style.transform = 'translateX(0)';
+        advisorFaq.style.transform = 'translateX(0)';
+        userText.classList.remove('hidden');
+        advisorText.classList.add('hidden');
+        currentView = 'user';
+      }
+      
+      setTimeout(() => {
+        if (toggleViewBtn instanceof HTMLButtonElement) {
+          toggleViewBtn.disabled = false;
         }
-      });    
+      }, 500);
+    });
   }
-
-
-  // Add demo list click handlers if needed
 </script>
 
 <style>
+  .toggle-btn {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .toggle-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease-out;
+  }
+
+  .toggle-btn:active::after {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  #view-container, #faq-container {
+    height: auto;
+    min-height: 200px; /* Adjust as needed */
+  }
+
   @media (max-width: 725px) {
     th {
       font-size: 16px;
