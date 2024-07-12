@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const PremiumFeatureLock = ({ featureDescription}) => {
   const redirectToPerfingo = () => {
-    window.open('https://www.perfingo.com/create-account', '_blank');
+    window.open('https://app.perfingo.com/create-account', '_blank');
   }
   return (
     <motion.div 

@@ -202,7 +202,7 @@ const HousingResultVisualization = ({
   };
 
   const redirectToPerfingo = () => {
-    window.open('https://www.perfingo.com/create-account', '_blank');
+    window.open('https://app.perfingo.com/create-account', '_blank');
   }
 
 
