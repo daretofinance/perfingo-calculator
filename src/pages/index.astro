@@ -5,6 +5,7 @@ import HowItWorks from '../components/landing/HowItWorks.astro';
 import Features from '../components/landing/Features.astro';
 import FAQ from '../components/FAQ.astro';
 import AccountCard from '../components/landing/AccountCard.astro';
+import type Faq from '../types/faq';
 
 const individualCards = [
   {
@@ -24,6 +25,36 @@ const individualCards = [
     learnMoreLink: "/get-started",
     actionLink: "/guided-session-form",
     actionText: "Schedule",
+  },
+];
+
+const faqsHome: Faq[] = [
+  {
+    title: 'Faq 1: How does Perfingo help in setting and achieving financial goals?',
+    description:
+      'Perfingo helps you to visualise the feasibility of your goals and the impact of your financial decisions on them. We allow you to integrate life goals into your financial planning, offering customised strategies and advice to help you align your finances with your objectives and achieve them.',
+  },
+  {
+    title: 'Faq 2: Can couples use Perfingo for joint financial planning?',
+    description:
+      'Yes, Perfingo has features that allow couples to collaboratively manage and plan their finances, fostering transparency and financial harmony in relationships. However, both partners must have their own Perfingo accounts.',
+  },
+  {
+    title: "Faq 3: What's the difference between Perfingo and other personal finance app?",
+    description:
+      'Perfingo is a personal finance app that helps you to plan and achieve your life goals. We are not just a budgeting app. We help you to visualise the feasibility of your goals and the impact of your financial decisions on them. We allow you to integrate life goals into your financial planning, offering customised strategies and advice to help you align your finances with your objectives and achieve them.',
+  },
+  {
+    title: 'Faq 4: How does Perfingo ensure the security and privacy of my financial data?',
+    description:
+      'Perfingo prioritises your data security. Firstly, we only ask for your email address. We also employ robust encryption and security protocols to ensure that your financial information is protected from unauthorised access and threats.',
+  },
+  {
+    title: 'Faq 5: Are we working with any financial institutions?',
+    description:
+      'Perfingo is not working with any financial institutions directly. \
+      We only licensed our software to financial planners to help them better serve their clients. \
+      Only when you requested for a session with a financial planner, then we will connect you with them.',
   },
 ];
 ---
@@ -56,7 +87,7 @@ const individualCards = [
       <h2 class="text-4xl font-bold text-center mb-16 text-neutral-800">Get started with Perfingo</h2>
       <AccountCard cards={individualCards}/>
     </div>
-    <FAQ />
+    <FAQ faqs={faqsHome}/>
   </main>
 </Layout>
 
