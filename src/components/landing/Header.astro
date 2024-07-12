@@ -1,80 +1,57 @@
 ---
-import { Image } from 'astro:assets';
-
-const appScreenShot = [
-  { link: '/app-screenshot/annual_cashflow.png', width: 300, height: 300 },
-  { link: '/app-screenshot/annual_cash.png', width: 200, height: 300 },
-  { link: '/app-screenshot/basic-information.svg', width: 200, height: 300 },
-  { link: '/app-screenshot/room.svg', width: 200, height: 300 },
-];
 ---
 
-<header class="py-20 md:py-32 relative overflow-hidden">
-  <div class="container mx-auto px-4">
-    <div class="text-center mb-16">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4">
-        Navigate finances with <br />
-        <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-green-500">
-          clarity and confidence
-        </span>
-      </h1>
-      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-        Perfingo helps you take the guesswork out of financial planning so you can navigate life at ease
-      </p>
-    </div>
-    <div class="hidden md:flex justify-center items-end space-x-8 mb-16">
-      {appScreenShot.map((image, index) => (
-        <div class={`relative ${index === 0 ? '-left-16 -bottom-8' : index === 1 ? '-top-8' : index === 3 ? '-right-16 -bottom-8' : ''}`}>
-          <Image
-            src={image.link}
-            alt={`App Screenshot ${index + 1}`}
-            width={image.width}
-            height={image.height}
-            class="rounded-lg shadow-xl"
-          />
+<header class="py-20 md:py-32 relative overflow-hidden bg-gradient-to-br from-white via-blue-50 to-green-50">
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="flex flex-col md:flex-row items-center">
+      <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4">
+          Navigate finances with <br />
+          <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-600">
+            clarity and confidence
+          </span>
+        </h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto md:mx-0 mb-8">
+          Perfingo helps you take the guesswork out of financial planning so you can navigate life with ease
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+          <a href="/get-started" class="bg-green-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors duration-300">
+            Get Started
+          </a>
+          
         </div>
-      ))}
-    </div>
-    <div class="md:hidden overflow-hidden">
-      <div class="flex animate-carousel">
-        {[...appScreenShot, ...appScreenShot, ...appScreenShot].map((image, index) => (
-          <div class="flex-shrink-0 w-64 mx-2">
-            <Image
-              src={image.link}
-              alt={`App Screenshot ${index + 1}`}
-              width={image.width}
-              height={image.height}
-              class="rounded-lg shadow-xl"
-            />
-          </div>
-        ))}
+      </div>
+      <div class="md:w-1/2">
+        <svg class="w-full h-auto" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10,150 Q200,250 390,150" fill="none" stroke="#3B82F6" stroke-width="2">
+            <animate attributeName="d" dur="5s" repeatCount="indefinite"
+              values="M10,150 Q200,250 390,150;
+                      M10,150 Q200,50 390,150;
+                      M10,150 Q200,250 390,150" />
+          </path>
+          <circle cx="10" cy="150" r="5" fill="#3B82F6">
+            <animate attributeName="cy" dur="5s" repeatCount="indefinite"
+              values="150; 100; 150" />
+          </circle>
+          <circle cx="390" cy="150" r="5" fill="#10B981">
+            <animate attributeName="cy" dur="5s" repeatCount="indefinite"
+              values="150; 200; 150" />
+          </circle>
+          <path d="M50,250 L350,250" stroke="#E5E7EB" stroke-width="2" />
+          <rect x="100" y="180" width="40" height="70" fill="#60A5FA">
+            <animate attributeName="height" dur="3s" repeatCount="indefinite"
+              values="70; 40; 70" />
+          </rect>
+          <rect x="180" y="140" width="40" height="110" fill="#34D399">
+            <animate attributeName="height" dur="4s" repeatCount="indefinite"
+              values="110; 80; 110" />
+          </rect>
+          <rect x="260" y="200" width="40" height="50" fill="#A78BFA">
+            <animate attributeName="height" dur="5s" repeatCount="indefinite"
+              values="50; 90; 50" />
+          </rect>
+        </svg>
       </div>
     </div>
   </div>
-  <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
-    <div class="absolute top-10 left-[-50px] w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-    <div class="absolute top-[200px] right-[-50px] w-96 h-96 bg-green-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-  </div>
 </header>
-
-<style>
-  @keyframes blob {
-    0% { transform: translate(0px, 0px) scale(1); }
-    33% { transform: translate(30px, -50px) scale(1.1); }
-    66% { transform: translate(-20px, 20px) scale(0.9); }
-    100% { transform: translate(0px, 0px) scale(1); }
-  }
-  .animate-blob {
-    animation: blob 7s infinite;
-  }
-  .animation-delay-2000 {
-    animation-delay: 2s;
-  }
-  @keyframes carousel {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
-  }
-  .animate-carousel {
-    animation: carousel 60s linear infinite;
-  }
-</style>
