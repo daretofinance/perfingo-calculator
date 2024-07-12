@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GuidedSessionForm from '../components/forms/GuidedSessionForm.jsx';
+---
+
+<Layout title="Sign Up for a Free Guided Session">
+    <div class="py-10 bg-gradient-to-r from-white to-green-500 flex items-center justify-center min-h-screen">
+      <div class="bg-white p-8 rounded-lg shadow-2xl max-w-2xl w-full relative overflow-hidden">
+        <h1 class="text-3xl font-extrabold mb-4 text-center text-green-700 z-10 relative">
+          Sign Up for a Free Guided Session
+        </h1>
+        <p class="mb-6 text-gray-700 text-center leading-relaxed z-10 relative paragraph-small">
+          Our guided session is a complimentary service that connects you with a carefully selected group of
+          highly reviewed financial advisers. These advisers are non-salesy and trained to provide comprehensive
+          personal finance advice beyond just insurance.<br />
+          During the guided session, advisers will not conduct any sales.
+        </p>
+  
+        <div class="bg-green-50 p-6 rounded-lg mb-6 border-l-4 border-green-500 z-2 relative">
+          <h2 class="text-xl font-semibold mb-3 text-green-600">
+            Benefit from a personalised software tailored to your specific needs and goals.
+          </h2>
+          <ul class="list-disc pl-6 text-gray-700 space-y-2 paragraph-small">
+            <li>Receive personalised financial planning assistance</li>
+            <li>Gain expert insights to improve your finances</li>
+            <li>Obtain professional advice on insurance options</li>
+            <li>Get a second opinion on financial matters</li>
+            <li>Understand financial terminology clearly</li>
+            <li>Enjoy lifetime access to your personal dashboard</li>
+          </ul>
+        </div>
+        
+  
+        <GuidedSessionForm client:load />
+      </div>
+    </div>
+</Layout>
