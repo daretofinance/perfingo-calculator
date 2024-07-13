@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState, useEffect } from 'react';
 import { prepareHousingData, sendHousingRequest } from '../../utils/api'; 
 import HousingResultVisualization from "../charts/HousingResult";
 import HousingResultPlaceholder from '../placeholders/HousingResultPlaceholder';
@@ -55,6 +55,22 @@ const MortgageCalculatorWidget = () => {
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    if (result) {
+      const timer = setTimeout(() => {
+        setShowPopup(true);
+      }, 3000); // Show popup 3 seconds after result is rendered
+
+      return () => clearTimeout(timer);
+    }
+  }, [result]);
+
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
 
   const currencyFormatter = new Intl.NumberFormat('en-SG', {
     style: 'currency',
@@ -240,20 +256,47 @@ const MortgageCalculatorWidget = () => {
       </div>
       {error && <div className="text-red-500 text-center mb-4">{error}</div>}
       {result ? (
-        <HousingResultVisualization
-          oa_list={result.oa_list}
-          sa_list={result.sa_list}
-          ma_list={result.ma_list}
-          cash_overflow_from_cpf={result.cash_overflow_from_cpf}
-          cpf_life_payout={result.cpf_life_payout}
-          cpf_excess_dict={result.cpf_excess_dict}
-          total_payment_for_housing={result.total_payment_for_housing}
-          cpf_payment_for_housing={result.cpf_payment_for_housing}
-          cash_payment_for_housing={result.cash_payment_for_housing}
-          retirement_sum_achieved={result.retirement_sum_achieved}
-          housingObj={result.housingObj}
-          housing_info={result.housing_info}
-        />
+        <>
+          <HousingResultVisualization
+            oa_list={result.oa_list}
+            sa_list={result.sa_list}
+            ma_list={result.ma_list}
+            cash_overflow_from_cpf={result.cash_overflow_from_cpf}
+            cpf_life_payout={result.cpf_life_payout}
+            cpf_excess_dict={result.cpf_excess_dict}
+            total_payment_for_housing={result.total_payment_for_housing}
+            cpf_payment_for_housing={result.cpf_payment_for_housing}
+            cash_payment_for_housing={result.cash_payment_for_housing}
+            retirement_sum_achieved={result.retirement_sum_achieved}
+            housingObj={result.housingObj}
+            housing_info={result.housing_info}
+          />
+          {
+            showPopup && (
+              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div className="bg-white rounded-lg p-8 max-w-md mx-4">
+                <h3 className="text-3xl font-bold text-gray-800 mb-4 text-center">Enjoying our free calculators?</h3>
+                <p className="text-sm text-gray-600 mb-6 text-center">You'll love our software that incorporates all other parts of your finances.<br></br> Sign up for a free account!</p>
+                <div className="flex  flex-col gap-3 justify-center items-center">
+                  <a 
+                    href="https://app.perfingo.com/create-account?utm_source=mortgage-calculator&utm_medium=popup&utm_campaign=signup" 
+                    target='_blank'
+                    className="bg-green-800 text-white px-6 py-2 rounded-full hover:bg-green-600 transition duration-300"
+                  >
+                    Create a Free Account
+                  </a>
+                  <button 
+                    onClick={closePopup}
+                    className="text-gray-500 hover:text-gray-700"
+                  >
+                    Maybe later
+                  </button>
+                </div>
+              </div>
+            </div>
+            )
+          }
+        </>
       ) : (
         <HousingResultPlaceholder />
       )}

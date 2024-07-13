@@ -1,6 +1,6 @@
 ---
 import CalculatorLayout from '../../layouts/CalculatorLayout.astro';
-import MortgageCalculatorWidget from "../../components/calculators/MortgageCalculatorWidget"
+import MortgageCalculatorWidget from "../../components/calculators/MortgageCalculatorWidget.jsx"
 
 const pageTitle = "HDB Loan Eligibility Calculator | Perfingo Singapore";
 const pageDescription = "Check your eligibility for an HDB loan in Singapore with Perfingo's easy-to-use calculator. Get estimates on loan amounts, monthly payments, and understand eligibility criteria.";
@@ -14,7 +14,7 @@ const pageKeywords = "HDB loan, loan eligibility, Singapore housing, mortgage ca
   keywords={pageKeywords}
   calculatorType="MortgageCalculator"
 >
-  <main class="bg-gray-50 py-20">
+  <main class="bg-gray-50 pt-20">
     <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
@@ -171,5 +171,17 @@ const pageKeywords = "HDB loan, loan eligibility, Singapore housing, mortgage ca
         </div>
       </div>
     </div>
+    <section id="cta" class="bg-green-50  py-20">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold mb-8">Enjoying our free calculators?</h2>
+        <p class="text-xl mb-10 max-w-2xl mx-auto">
+          You'll love our software that incorporate all other parts of your finances.
+        </p>
+        <a href="https://app.perfingo.com/create-account?utm_source=mortgage-calculator&utm_medium=bottomCta&utm_campaign=signup" 
+        class="bg-green-600 text-white py-4 px-10 rounded-full font-semibold text-lg hover:bg-green-300 hover:text-green-600 transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+          Create a Free Account
+        </a>
+      </div>
+    </section>
   </main>
 </CalculatorLayout>

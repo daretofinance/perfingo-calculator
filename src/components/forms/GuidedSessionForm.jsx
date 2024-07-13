@@ -48,7 +48,6 @@ const GuidedSessionForm = () => {
       } else {
         ENDPOINT = import.meta.env.PUBLIC_STORAGE_URL;
       }
-      console.log("Endpoint:", ENDPOINT);
       try {
         console.log("Sending request to:", `${ENDPOINT}/others/guidedUserSignup`);
         console.log("Payload:", JSON.stringify(payload));

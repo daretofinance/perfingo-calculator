@@ -97,7 +97,6 @@ export const sendHousingRequest = async (data) => {
   } else{
     ENDPOINT = import.meta.env.PUBLIC_API_ENDPOINT;
   }
-  console.log('ENDPOINT:', ENDPOINT);
   try {
       const response = await fetch(`${ENDPOINT}/project_cpf_and_housing`, {
           method: 'POST',
