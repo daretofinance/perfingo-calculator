@@ -3,7 +3,7 @@ export default interface Card{
     image: string;
     alt: string;
     description: string;
-    learnMoreLink: string;
+    learnMoreLink?: string;
     actionLink: string;
     actionText: string;
 }

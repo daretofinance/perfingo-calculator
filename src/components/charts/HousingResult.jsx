@@ -208,7 +208,7 @@ const HousingResultVisualization = ({
 
   return (
     <motion.div
-      className="container mx-auto p-4 lg:p-8 bg-gray-100"
+      className="container mx-auto p-4 lg:p-8 "
       initial="hidden"
       animate="visible"
       variants={containerVariants}
