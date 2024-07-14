@@ -3,6 +3,8 @@ import { ViewTransitions } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
+import PostHog from '../components/posthog.astro'
+
 interface Props {
 	title: string;
 	description?: string;
@@ -26,7 +28,8 @@ const { title, description = "Navigate finances with clarity and confidence" } =
 	
 		  gtag('config', 'G-RT5CSDWMP7');
 		</script>
-
+		<!-- Analytics -->
+		<PostHog />
 		<meta charset="UTF-8" />
 		<meta name="description" content={description}>
 		<meta name="viewport" content="width=device-width" />
